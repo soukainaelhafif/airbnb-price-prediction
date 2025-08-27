@@ -26,3 +26,6 @@ data/*.zip
 # Secrets & local config
 *.env
 *.env.*
+# Model artifacts
+models/*
+!models/.gitkeep
