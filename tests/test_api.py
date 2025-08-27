@@ -55,3 +55,10 @@ def test_predict_with_dummy_model(monkeypatch):
     r = client.post("/predict", json=payload)
     assert r.status_code == 200
     assert r.json()["price_eur"] == 123.45
+
+
+def test_predict_validation_error():
+    client = TestClient(api_mod.app)
+    bad_payload = {"room_type": 123}  # wrong type on purpose
+    r = client.post("/predict", json=bad_payload)
+    assert r.status_code == 422
