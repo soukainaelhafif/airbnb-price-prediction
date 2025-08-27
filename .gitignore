@@ -1,0 +1,28 @@
+# Python / Jupyter
+__pycache__/
+.ipynb_checkpoints/
+*.pyc
+
+# Virtual environments
+venv/
+.venv/
+
+# IDE/editor
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Data files — keep folder but ignore real data
+data/*.csv
+data/*.csv.gz
+data/*.parquet
+data/*.xlsx
+data/*.zip
+!data/.gitkeep   # keep placeholder
+
+# Secrets & local config
+*.env
+*.env.*
