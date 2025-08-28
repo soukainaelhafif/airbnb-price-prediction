@@ -44,7 +44,7 @@ class ModelInfo(BaseModel):
     features: List[str]
     metrics: Optional[dict] = None
     created: Optional[str] = None
-    model_path: str
+    model_path: Optional[str] = None
 
 
 class PredictionBatchOut(BaseModel):
@@ -81,11 +81,14 @@ def features():
 
 @app.get("/model_info", response_model=ModelInfo)
 def model_info():
+    created = META.get("created") if META else None
+    metrics = META.get("metrics") if META else None
+    model_path = MODEL_PATH.as_posix()
     return ModelInfo(
         features=FEATURES,
-        metrics=META.get("metrics") if META else None,
-        created=META.get("created") if META else None,
-        model_path=str(MODEL_PATH),
+        metrics=metrics,
+        created=created,
+        model_path=model_path,
     )
 
 
@@ -104,3 +107,8 @@ def predict_batch(items: List[ListingIn]):
     df = pd.DataFrame([it.model_dump() for it in items])[FEATURES]
     preds = MODEL.predict(df)
     return PredictionBatchOut(prices_eur=[round(float(x), 2) for x in preds])
+
+
+@app.get("/")
+def root():
+    return {"message": "Airbnb Berlin – Price Prediction", "docs": "/docs", "version": app.version}
