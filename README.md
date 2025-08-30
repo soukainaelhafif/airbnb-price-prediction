@@ -1,4 +1,7 @@
 # airbnb-price-prediction
+
+![CI](https://github.com/soukainaelhafif/airbnb-price-prediction/actions/workflows/ci.yml/badge.svg)
+
 # Airbnb Price Prediction (Berlin)
 
 End-to-end Machine Learning project to predict Airbnb prices in Berlin using Python, scikit-learn, FastAPI, Streamlit, and Docker.
