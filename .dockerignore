@@ -1,0 +1,25 @@
+# Python junk
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pytest_cache/
+*.ipynb_checkpoints
+
+# Local env & venvs
+.env
+venv/
+.venv/
+
+# Large or local-only folders
+data/
+reports/
+notebooks/
+
+# Models are mounted at runtime; keep repo tiny
+models/*
+!models/.gitkeep
+
+# Git metadata
+.git
+.gitignore
