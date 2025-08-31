@@ -1,0 +1,11 @@
+services:
+  api:
+    build: .
+    image: airbnb-api:latest
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./models:/models
+    env_file:
+      - .env.docker
+    command: ["python","-m","uvicorn","src.api:app","--host","0.0.0.0","--port","8000"]
