@@ -34,3 +34,8 @@ models/*
 .env
 
 .env.docker
+
+# allow example env files
+!.env.example
+!.env.docker.example
+
