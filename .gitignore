@@ -32,3 +32,5 @@ models/*
 
 # local env
 .env
+
+.env.docker
