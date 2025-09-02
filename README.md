@@ -24,7 +24,21 @@ End-to-end Machine Learning project to predict Airbnb prices in Berlin using Pyt
 - Docker (containerization)
 - GitHub Actions (CI/CD)
 
----
+## Power BI Dashboard
+
+- **PDF**: `reports/airbnb_dashboard.pdf`  
+- **PBIX** (if available): `reports/airbnb_dashboard.pbix`  
+- **Preview**: ![Dashboard Preview](reports/dashboard_preview.png)  
+
+**KPIs**  
+- **MAPE %** = Average( |error| / |price| ) × 100  
+- **MAE (€)** = Average( |error| )  
+- **RMSE (€)** = Square root( Average( error² ) )  
+
+**Charts**  
+- Average predicted_price by neighbourhood  
+- Predicted price vs. accommodates (colored by neighbourhood)  
+- Error distribution (histogram)  
 
 ## Run with Docker
 
@@ -34,3 +48,4 @@ Set-Content .env.docker @'
 MODEL_PATH=/models/baseline.joblib
 META_PATH=/models/baseline.joblib.meta.json
 '@
+

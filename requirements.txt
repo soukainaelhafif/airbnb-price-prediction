@@ -7,3 +7,4 @@ uvicorn[standard]
 pydantic
 pytest
 httpx>=0.27
+openpyxl>=3.1
