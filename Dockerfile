@@ -1,5 +1,12 @@
 FROM python:3.11-slim
 
+LABEL org.opencontainers.image.title="Airbnb Berlin – Price Prediction API"
+LABEL org.opencontainers.image.description="FastAPI service that predicts nightly Airbnb prices in Berlin. Includes sklearn training pipeline and metadata-aware model loading."
+LABEL org.opencontainers.image.source="https://github.com/soukainaelhafif/airbnb-price-prediction"
+LABEL org.opencontainers.image.licenses="MIT"
+LABEL org.opencontainers.image.authors="Soukaina Elhafif <souka.elhafif@gmail.com>"
+
+
 WORKDIR /app
 
 RUN apt-get update && apt-get install -y --no-install-recommends \

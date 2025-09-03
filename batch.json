@@ -1,0 +1,12 @@
+﻿[
+  {
+    "room_type":"Entire home/apt","neighbourhood":"Mitte","accommodates":2,
+    "bedrooms":1,"bathrooms_num":1.0,"minimum_nights":2,
+    "number_of_reviews":10,"reviews_per_month":0.3,"availability_365":120
+  },
+  {
+    "room_type":"Private room","neighbourhood":"Kreuzberg","accommodates":1,
+    "bedrooms":1,"bathrooms_num":1.0,"minimum_nights":1,
+    "number_of_reviews":5,"reviews_per_month":0.2,"availability_365":200
+  }
+]

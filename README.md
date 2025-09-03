@@ -1,4 +1,4 @@
-# Airbnb Price Prediction — Berlin
+can i commit my changes !?# Airbnb Price Prediction — Berlin 🇩🇪
 
 End‑to‑end ML project that predicts nightly Airbnb prices in **Berlin**. It includes data cleaning, a baseline regression model, and a production‑ready **FastAPI** service packaged with **Docker**. The project is designed to demonstrate practical ML engineering skills for a **Working Student (Werkstudent\*in) Data/ML** role in Germany.
 
