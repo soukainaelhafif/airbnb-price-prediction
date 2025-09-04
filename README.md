@@ -11,7 +11,7 @@ End‑to‑end ML project that predicts nightly Airbnb prices in **Berlin**. It 
 - **Tests**: `tests/` with unit tests for cleaning, training, and API endpoints.
 - **Docker**: `Dockerfile` + `docker-compose.yml` to run the API with mounted model artifacts.
 - **Notebooks & Reports**: `notebooks/` for EDA/modeling; `reports/airbnb_dashboard.pbix` & `reports/airbnb_dashboard.pdf` for business insights.
-- **CI stub**: `.github/workflows/ci.yml` (pytest on push).
+- **CI/CD**: `.github/workflows/ci.yml` (pytest on push) and `.github/workflows/publish.yml` (build & push Docker image to GHCR on `main`/tags).
 
 Data source: [Inside Airbnb — Berlin](http://insideairbnb.com/get-the-data). Add the latest `listings.csv.gz` to `data/` before running the pipeline.
 
@@ -44,7 +44,7 @@ airbnb-price-prediction
 ```bash
 python -m venv .venv
 source .venv/bin/activate        # Windows: .venv\Scripts\activate
-pip install --upgrade pip
+python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
@@ -64,7 +64,15 @@ python -m src.models.train --data data/berlin_clean.csv --out models/baseline.jo
 
 ### 5) Run the API
 ```bash
-# Uses MODEL_PATH and META_PATH env vars (see below)
+# Set env vars first (Windows PowerShell)
+$env:MODEL_PATH="models\baseline.joblib"
+$env:META_PATH="models\baseline.joblib.meta.json"
+
+# macOS/Linux
+export MODEL_PATH=models/baseline.joblib
+export META_PATH=models/baseline.joblib.meta.json
+
+# Start API
 uvicorn src.api:app --host 0.0.0.0 --port 8000
 # Open interactive docs:
 # http://127.0.0.1:8000/docs
@@ -213,7 +221,8 @@ From `models/baseline.joblib.meta.json` (hold-out test data):
 - n_train: **5678**
 - n_valid: **1420**
 
-Note: values may vary when the model is retrained.
+*Metrics above are from the latest local training run; values change when retrained with a new snapshot.*
+
 
 ---
 
