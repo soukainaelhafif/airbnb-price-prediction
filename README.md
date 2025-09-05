@@ -1,13 +1,29 @@
-can i commit my changes !?# Airbnb Price Prediction — Berlin 🇩🇪
+# Airbnb Price Prediction — Berlin 🇩🇪
 
-End‑to‑end ML project that predicts nightly Airbnb prices in **Berlin**. It includes data cleaning, a baseline regression model, and a production‑ready **FastAPI** service packaged with **Docker**. The project is designed to demonstrate practical ML engineering skills for a **Working Student (Werkstudent\*in) Data/ML** role in Germany.
+End-to-end ML service (Clean → Train → Serve) with **FastAPI** and **Docker**.  
+Built to showcase **ML engineering** skills for a **Working Student (Data/ML)** role in Germany.
+
+[![CI](https://github.com/soukainaelhafif/airbnb-price-prediction/actions/workflows/ci.yml/badge.svg)](https://github.com/soukainaelhafif/airbnb-price-prediction/actions/workflows/ci.yml)
+[![Publish](https://github.com/soukainaelhafif/airbnb-price-prediction/actions/workflows/publish.yml/badge.svg)](https://github.com/soukainaelhafif/airbnb-price-prediction/actions/workflows/publish.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
+**Quick links:**  
+- **API docs (Swagger):** http://127.0.0.1:8000/docs (after starting the API)  
+- **Health:** http://127.0.0.1:8000/health
+- **Business report (PDF):** [reports/airbnb_dashboard.pdf](reports/airbnb_dashboard.pdf)
+
+<p align="center">
+  <img src="docs/swagger_screenshot.png" alt="FastAPI Swagger" width="45%" />
+  &nbsp;&nbsp;&nbsp;
+  <img src="reports/airbnb_dashboard_preview.png" alt="Power BI Dashboard" width="45%" />
+</p>
 
 ---
 
 ## What’s inside
 - **Data pipeline**: `src/clean.py` to turn InsideAirbnb listings into a compact feature table.
-- **Model training**: `src/models/train.py` builds a scikit‑learn pipeline (impute → scale/one‑hot → RandomForest) and saves artifacts with metadata.
-- **API service**: `src/api/__init__.py` exposes `/predict` and `/predict_batch` with **FastAPI** and Pydantic validation.
+- **Model training**: `src/models/train.py` builds a scikit‑learn pipeline (impute → scale/one‑hot → RandomForestRegressor) and saves artifacts with metadata.
+- **API service**: `src/api/__init__.py` exposes `/health`, `/features`, `/predict`, `/predict_batch` with **FastAPI** and Pydantic validation.
 - **Tests**: `tests/` with unit tests for cleaning, training, and API endpoints.
 - **Docker**: `Dockerfile` + `docker-compose.yml` to run the API with mounted model artifacts.
 - **Notebooks & Reports**: `notebooks/` for EDA/modeling; `reports/airbnb_dashboard.pbix` & `reports/airbnb_dashboard.pdf` for business insights.
@@ -39,6 +55,10 @@ airbnb-price-prediction
 ---
 
 ## Getting started (local)
+
+### Prerequisites
+- Python 3.11+
+- (optional) Docker 24+ if you want to run the API in a container
 
 ### 1) Create and activate an environment
 ```bash
