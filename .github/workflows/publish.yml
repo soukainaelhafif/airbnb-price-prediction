@@ -10,7 +10,7 @@ permissions:
   packages: write
 
 env:
-  IMAGE: ghcr.io/${{ github.repository_owner }}/airbnb-price-prediction
+  IMAGE: ghcr.io/${{ toLower(github.repository_owner) }}/airbnb-price-prediction
 
 jobs:
   test:
@@ -80,6 +80,7 @@ jobs:
         with:
           context: .
           push: true
+          provenance: false 
           tags: |
             ${{ env.IMAGE }}:latest
             ${{ env.IMAGE }}:${{ github.sha }}
