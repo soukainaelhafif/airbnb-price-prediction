@@ -3,7 +3,14 @@ import pandas as pd
 import joblib
 
 # Initialize FastAPI app
-app = FastAPI(title="Airbnb Price Prediction API")
+app = FastAPI(
+    title="Airbnb Price Prediction API",
+    description="Predict nightly Airbnb prices in Berlin 🇩🇪",
+    version="1.0.0",
+    docs_url="/docs",
+    redoc_url="/redoc",
+    openapi_url="/openapi.json"
+)
 
 # Disable model loading (for Render demo)
 model = None
@@ -37,7 +44,7 @@ def predict(
         "availability_365": availability_365
     }])
 
-    # ✅ Fake prediction for demo (no model loaded)
+    # Fake prediction for demo (no model loaded)
     if model is None:
         demo_price = 80 + accommodates * 15 + bedrooms * 25  # simple example
         return {"predicted_price_demo": round(float(demo_price), 2)}
