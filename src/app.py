@@ -5,13 +5,12 @@ import joblib
 # Initialize FastAPI app
 app = FastAPI(title="Airbnb Price Prediction API")
 
-# Load trained model
-import os
-model_path = os.getenv("MODEL_PATH", "/models/price_model.pkl")
-model = joblib.load(model_path)
+# Disable model loading (for Render demo)
+model = None
+meta = {}
 
 @app.get("/")
-def home():
+def root():
     return {"message": "Welcome to the Airbnb Price Prediction API 🚀"}
 
 @app.get("/predict")
@@ -26,7 +25,6 @@ def predict(
     reviews_per_month: float = Query(..., example=2.0),
     availability_365: int = Query(..., example=150)
 ):
-    # Create input DataFrame
     sample = pd.DataFrame([{
         "room_type": room_type,
         "neighbourhood": neighbourhood,
@@ -39,6 +37,11 @@ def predict(
         "availability_365": availability_365
     }])
 
-    # Make prediction
+    # ✅ Fake prediction for demo (no model loaded)
+    if model is None:
+        demo_price = 80 + accommodates * 15 + bedrooms * 25  # simple example
+        return {"predicted_price_demo": round(float(demo_price), 2)}
+
+    # If model exists, make a real prediction
     pred = model.predict(sample)[0]
     return {"predicted_price": round(float(pred), 2)}
