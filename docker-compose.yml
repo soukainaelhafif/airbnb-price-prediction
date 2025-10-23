@@ -1,11 +1,31 @@
+version: "3.9"
+
 services:
+  db:
+    image: postgres:15
+    container_name: airbnb_db
+    environment:
+      POSTGRES_USER: souka
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: airbnb
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
   api:
     build: .
     image: airbnb-api:latest
+    container_name: airbnb_api
+    depends_on:
+      - db
     ports:
       - "8000:8000"
     volumes:
       - ./models:/models
     env_file:
       - .env.docker
-    command: ["python","-m","uvicorn","src.api:app","--host","0.0.0.0","--port","8000"]
+    command: ["python", "-m", "uvicorn", "src.app:app", "--host", "0.0.0.0", "--port", "8000"]
+
+volumes:
+  pgdata:

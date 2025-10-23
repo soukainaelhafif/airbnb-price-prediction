@@ -6,7 +6,9 @@ import joblib
 app = FastAPI(title="Airbnb Price Prediction API")
 
 # Load trained model
-model = joblib.load("models/price_model.pkl")
+import os
+model_path = os.getenv("MODEL_PATH", "/models/price_model.pkl")
+model = joblib.load(model_path)
 
 @app.get("/")
 def home():
